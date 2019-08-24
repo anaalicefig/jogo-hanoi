@@ -34,13 +34,15 @@ void preencheMapa()
   }
 }
 
-bool jogadaValidate(int posicao1, int posicao2, int anel)
+bool jogadaValidate(int posicao1, int posicao2, string anel)
 {
   int posicao = stoi(aneis[posicao1][posicao2-1]);
 
+  int anelInt = stoi(anel);
+
   if((posicao1 > 5 || posicao1 < 0) || (posicao2 > 11 || posicao2 < 0))
     return false;
-  else if( posicao < anel)
+  else if( posicao < anelInt)
     return false;
     
   for(int i = 0; i < 5; i++){
@@ -53,10 +55,10 @@ bool jogadaValidate(int posicao1, int posicao2, int anel)
   return true;
 }
 
-bool efetuaJogada(int posicao1, int posicao2, int anelInt)
+bool efetuaJogada(int posicao1, int posicao2, string anelInt)
 {
   bool validate = jogadaValidate(posicao1, posicao2, anelInt);
-  cout<< "validade " << validate << endl;
+  
   if(validate) {
     aneis[posicao1-1][posicao2-1] = anelInt;
     return true;
@@ -66,14 +68,14 @@ bool efetuaJogada(int posicao1, int posicao2, int anelInt)
   }
 }
 
-int anelGraphToAnelInt(string anelGraph)
+string anelGraphToAnelNumber(string anelGraph)
 {
   if(anelGraph == "O")
-    return 3;
+    return "3";
   else if(anelGraph == "o")
-    return 2;
+    return "2";
   else if(anelGraph == "*")
-    return 1;
+    return "1";
 }
 
 bool verificaVitoria()
@@ -86,8 +88,8 @@ bool verificaVitoria()
 
 int main() 
 {    
-  string anelGraph;
-  int posicao1, posicao2, anelInt=0;
+  string anelGraph, anelNumber;    
+  int posicao1, posicao2;
   bool venceu = false;
 
   preencheMapa();
@@ -101,9 +103,9 @@ int main()
     cin >> posicao2;
     cin >> anelGraph;
 
-    anelInt = 3;
+    anelNumber = anelGraphToAnelNumber(anelGraph);
     
-    efetuaJogada(posicao1, posicao2, anelInt);
+    efetuaJogada(posicao1, posicao2, anelNumber);
     renderiza();
 
     if(verificaVitoria()){
