@@ -36,17 +36,23 @@ void preencheMapa()
 
 bool jogadaValidate(int posicao1, int posicao2, string anel)
 {
-  int posicao = stoi(aneis[posicao1][posicao2-1]);
+  cout << "fdsfjsd " + aneis[posicao1][posicao2-1] << endl;
+  cout << "fdsfjsd " + anel << endl;
 
   int anelInt = stoi(anel);
-
-  if((posicao1 > 5 || posicao1 < 0) || (posicao2 > 11 || posicao2 < 0))
-    return false;
-  else if( posicao < anelInt)
-    return false;
-    
+  int posicao;
+      
   for(int i = 0; i < 5; i++){
-    for(int j = 0; j < 11; j++){    
+    for(int j = 0; j < 11; j++){
+      if(i != 0 && i!= 4) {
+        posicao = stoi(aneis[posicao1][posicao2-1]);
+      }
+
+      if((posicao1 > 5 || posicao1 < 0) || (posicao2 > 11 || posicao2 < 0))
+        return false;
+      else if( posicao < anelInt)
+        return false;
+
       if((j != 2 || j != 5 ||j != 8) && (i == 0 && i == 4))
         return false;
     }
