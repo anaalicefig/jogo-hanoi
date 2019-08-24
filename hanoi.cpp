@@ -11,8 +11,11 @@ string aneis[LINHA][COLUNA];
 void renderiza()
 {
   for(int i = 0; i < LINHA; i++){
-    for(int j = 0; j < COLUNA; j++){            
-      cout << "c" << aneis[i][j] << "ɔ";
+    for(int j = 0; j < COLUNA; j++){    
+      if(aneis[3][2] == "O" && aneis[3][5] == "o" && aneis[3][8] == "*")         
+        cout << "c" << aneis[i][j] << "ɔ";
+
+      cout << aneis[i][j];
     }
     cout << endl;
   }  
@@ -53,7 +56,7 @@ bool jogadaValidate(int posicao1, int posicao2, int anel)
 bool efetuaJogada(int posicao1, int posicao2, int anelInt)
 {
   bool validate = jogadaValidate(posicao1, posicao2, anelInt);
-  
+  cout<< "validade " << validate << endl;
   if(validate) {
     aneis[posicao1-1][posicao2-1] = anelInt;
     return true;
@@ -100,7 +103,7 @@ int main()
 
     anelInt = 3;
     
-    //efetuaJogada(posicao1, posicao2, anelInt);
+    efetuaJogada(posicao1, posicao2, anelInt);
     renderiza();
 
     if(verificaVitoria()){
