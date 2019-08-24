@@ -10,8 +10,8 @@ string aneis[LINHA][COLUNA];
 
 void renderiza()
 {
-  for(int i = 0; i < 5; i++){
-    for(int j = 0; j < 11; j++){            
+  for(int i = 0; i < LINHA; i++){
+    for(int j = 0; j < COLUNA; j++){            
       cout << "c" << aneis[i][j] << "ɔ";
     }
     cout << endl;
@@ -22,7 +22,7 @@ void preencheMapa()
 {
   for(int i = 0; i < 5; i++){
     for(int j = 0; j < 11; j++){
-      if(aneis[i][j].compare(0,0,"O") || aneis[i][j].compare(0,0,"o") || aneis[i][j].compare(0,0,"*")){
+      if(aneis[i][j] == "O" || aneis[i][j] == "o" || aneis[i][j] == "*"){
         if((j == 2 || j == 5 ||j == 8) && (i != 0 && i != 4))
           aneis[i][j] = "|";        
       }
@@ -33,10 +33,7 @@ void preencheMapa()
 
 bool jogadaValidate(int posicao1, int posicao2, int anel)
 {
-  // stringstream posicaoConv(aneis[posicao1][posicao2-1])
-
   int posicao = stoi(aneis[posicao1][posicao2-1]);
-  // posicaoConv >> posicao;
 
   if((posicao1 > 5 || posicao1 < 0) || (posicao2 > 11 || posicao2 < 0))
     return false;
@@ -68,17 +65,17 @@ bool efetuaJogada(int posicao1, int posicao2, int anelInt)
 
 int anelGraphToAnelInt(string anelGraph)
 {
-  if(anelGraph.compare(0, 0, "O"))
+  if(anelGraph == "O")
     return 3;
-  else if(anelGraph.compare(0, 0, "o"))
+  else if(anelGraph == "o")
     return 2;
-  else if(anelGraph.compare(0, 0, "*"))
+  else if(anelGraph == "*")
     return 1;
 }
 
 bool verificaVitoria()
 {
-  if(aneis[3][2].compare(0, 0, "O") || aneis[3][5].compare(0, 0, "o") || aneis[3][8].compare(0, 0, "*")) 
+  if(aneis[3][2] == "O" && aneis[3][5] == "o" && aneis[3][8] == "*") 
     return true;
 
   return false;
@@ -101,9 +98,9 @@ int main()
     cin >> posicao2;
     cin >> anelGraph;
 
-    anelInt = anelGraphToAnelInt(anelGraph);
+    anelInt = 3;
     
-    efetuaJogada(posicao1, posicao2, anelInt);
+    //efetuaJogada(posicao1, posicao2, anelInt);
     renderiza();
 
     if(verificaVitoria()){
